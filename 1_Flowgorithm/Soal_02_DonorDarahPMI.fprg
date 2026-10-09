@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_02_DonorDarahPMI"/>
+        <attribute name="authors" value="Lenovo"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 01:57:55 PM"/>
+        <attribute name="created" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzExOjI0OjAyIEFNOzI5ODA="/>
+        <attribute name="edited" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzAxOjU3OjU1IFBNOzM7MzExOA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="usia, sistolik, diastolik, jarakDonor" type="Integer" array="False" size=""/>
+            <declare name="BB, hemoglobin" type="Real" array="False" size=""/>
+            <declare name="izinOrtu" type="Boolean" array="False" size=""/>
+            <declare name="ukKantong" type="String" array="False" size=""/>
+            <output expression="&quot;Masukkan usia anda&quot;" newline="True"/>
+            <input variable="usia"/>
+            <if expression="usia &gt;=17 AND usia &lt;=60">
+                <then>
+                    <if expression="usia == 17">
+                        <then>
+                            <output expression="&quot;Apakah memiliki izin orangtua? (true/false)&quot;" newline="True"/>
+                            <input variable="izinOrtu"/>
+                            <if expression="izinOrtu == true">
+                                <then>
+                                    <output expression="&quot;Masukkan berat badan anda&quot;" newline="True"/>
+                                    <input variable="BB"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Maaf, kamu wajib izin ke orangtua terlebih dahulu&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;Masukkan berat badan anda&quot;" newline="True"/>
+                            <input variable="BB"/>
+                        </else>
+                    </if>
+                    <if expression="BB &gt;= 45">
+                        <then>
+                            <if expression="BB &lt;= 54">
+                                <then>
+                                    <assign variable="ukKantong" expression="&quot;350 ml&quot;"/>
+                                </then>
+                                <else>
+                                    <assign variable="ukKantong" expression="&quot;450 ml&quot;"/>
+                                </else>
+                            </if>
+                            <output expression="&quot;Masukkan tekanan darah sistolik&quot;" newline="True"/>
+                            <input variable="sistolik"/>
+                            <output expression="&quot;Masukkan tekanan darah diastolik&quot;" newline="True"/>
+                            <input variable="diastolik"/>
+                            <if expression="(sistolik &gt;= 100 AND sistolik &lt;= 140) AND (diastolik &gt;= 70 AND diastolik &lt;= 90)">
+                                <then>
+                                    <output expression="&quot;Masukkan hemoglobin anda&quot;" newline="True"/>
+                                    <input variable="hemoglobin"/>
+                                    <if expression="hemoglobin &gt;= 12.5 AND hemoglobin &lt;= 17.0">
+                                        <then>
+                                            <output expression="&quot;Masukkan jarak donor anda&quot;" newline="True"/>
+                                            <input variable="jarakDonor"/>
+                                            <if expression="jarakDonor &gt;= 60">
+                                                <then>
+                                                    <output expression="&quot;Selamat kamu layak menjadi pendonor darah. Ukuran kantong darah anda adalah: &quot; &amp; ukKantong" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Maaf, anda ditolak. Jarak sejak donor terakhir minimal harus 60 hari&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <if expression="hemoglobin &lt; 12.5">
+                                                <then>
+                                                    <output expression="&quot;Maaf, ditolak risiko anemia karena kadar kurang dari 12.5 g/dL&quot;" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Maaf, ditolak kadar hemoglobin terlalu tinggi&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Tekanan darah kamu tidak normal&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;Maaf, ditolak. berat badan minimal harus 45 kg ya&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Maaf, permintaan ditolak&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

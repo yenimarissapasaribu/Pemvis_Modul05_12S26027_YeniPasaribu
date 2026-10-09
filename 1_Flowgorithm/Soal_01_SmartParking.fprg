@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_01_SmartParking"/>
+        <attribute name="authors" value="Lenovo"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 11:23:34 AM"/>
+        <attribute name="created" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzEwOjE1OjUwIEFNOzI5ODI="/>
+        <attribute name="edited" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzExOjIzOjM0IEFNOzI7MzA5Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="biayaParkir, durasiJam, denda" type="Integer" array="False" size=""/>
+            <declare name="jenisKendaraan" type="String" array="False" size=""/>
+            <declare name="voucher" type="Boolean" array="False" size=""/>
+            <declare name="totalBayar" type="Real" array="False" size=""/>
+            <output expression="&quot;Masukkan durasi jam&quot;" newline="True"/>
+            <input variable="durasiJam"/>
+            <output expression="&quot;Masukkan jenis kendaraan anda&quot;" newline="True"/>
+            <input variable="jenisKendaraan"/>
+            <if expression="durasiJam &gt; 0 AND jenisKendaraan == &quot;M&quot; OR jenisKendaraan == &quot;S&quot;">
+                <then>
+                    <if expression="jenisKendaraan == &quot;M&quot;">
+                        <then>
+                            <if expression="durasiJam &lt;=2">
+                                <then>
+                                    <assign variable="biayaParkir" expression="5000"/>
+                                </then>
+                                <else>
+                                    <assign variable="biayaParkir" expression="5000+((durasiJam-2)*3000)"/>
+                                </else>
+                            </if>
+                            <output expression="&quot;biayaParkir yang harus kamu bayar adalah:&quot; &amp; biayaParkir" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="durasiJam &lt;=2">
+                                <then>
+                                    <assign variable="biayaParkir" expression="2000"/>
+                                </then>
+                                <else>
+                                    <assign variable="biayaParkir" expression="2000+((durasiJam-2)*1000)"/>
+                                </else>
+                            </if>
+                            <output expression="&quot;biayaParkir yang harus kamu bayar adalah:&quot; &amp; biayaParkir" newline="True"/>
+                        </else>
+                    </if>
+                    <if expression="durasiJam &gt;12">
+                        <then>
+                            <assign variable="denda" expression="25000"/>
+                        </then>
+                        <else>
+                            <assign variable="denda" expression="0"/>
+                        </else>
+                    </if>
+                    <output expression="&quot;denda yang harus kamu bayar adalah:&quot; &amp; denda" newline="True"/>
+                    <assign variable="totalBayar" expression="biayaParkir+denda"/>
+                    <output expression="&quot;apakah kamu memliki voucher?&quot;" newline="True"/>
+                    <input variable="voucher"/>
+                    <if expression="voucher == true">
+                        <then>
+                            <assign variable="totalBayar" expression="totalBayar*90/100"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <output expression="&quot;total yang harus kamu bayar adalah:&quot; &amp; totalBayar" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;maaf, input tidak valid!&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

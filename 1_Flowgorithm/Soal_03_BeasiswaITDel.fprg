@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_03_BeasiswaITDel"/>
+        <attribute name="authors" value="Lenovo"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 02:30:19 PM"/>
+        <attribute name="created" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzAxOjU3OjU3IFBNOzMwMTA="/>
+        <attribute name="edited" value="TGVub3ZvO0xBUFRPUC1SOVZKOVBFUDsyMDI2LTEwLTA5OzAyOjMwOjE5IFBNOzI7MzEwOQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="poinPelanggaran, skorPrestasi, tanggungan" type="Integer" array="False" size=""/>
+            <declare name="ipk, penghasilanOrtu, perKapita" type="Real" array="False" size=""/>
+            <declare name="rekomendasiWali, isJuaraTalenta" type="Boolean" array="False" size=""/>
+            <declare name="statusBeasiswa" type="String" array="False" size=""/>
+            <output expression="&quot;Masukkan poin pelanggaran&quot;" newline="True"/>
+            <input variable="poinPelanggaran"/>
+            <output expression="&quot;Masukkan ipk mahasiswa&quot;" newline="True"/>
+            <input variable="ipk"/>
+            <if expression="poinPelanggaran &gt; 0">
+                <then>
+                    <if expression="poinPelanggaran &lt;= 2 AND IPK &gt;= 3.85">
+                        <then>
+                            <assign variable="statusBeasiswa" expression="&quot;Diterima Bersyarat (Probation)&quot;"/>
+                            <output expression="&quot;selamat, kamu mendapat beasiswa dengan status Diterima Bersyarat&quot; &amp; statusBeasiswa" newline="True"/>
+                        </then>
+                        <else>
+                            <assign variable="statusBeasiswa" expression="&quot;Maaf, kamu ditolak&quot;"/>
+                            <output expression="&quot;Maaf, kamu tidak dapat beasiswa&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Masukkan skor prestasi mahasiswa (0-100): &quot;" newline="True"/>
+                    <input variable="skorPrestasi"/>
+                    <output expression="&quot;Masukkan penghasilan orang tua: Rp &quot;" newline="True"/>
+                    <input variable="penghasilanOrtu"/>
+                    <if expression="ipk &gt;= 3.75 AND skorPrestasi &gt;= 80 AND penghasilanOrtu &lt;= 5000000">
+                        <then>
+                            <assign variable="statusBeasiswa" expression="&quot;Skema A (Unggulan 100%)&quot;"/>
+                            <output expression="&quot;selamat, kamu mendapat beasiswa dengan status skema A&quot; &amp; statusBeasiswa" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Masukkan jumlah tanggungan anak: &quot;" newline="True"/>
+                            <input variable="tanggungan"/>
+                            <output expression="&quot;Masukkan penghasilan per kapita keluarga: Rp &quot;" newline="True"/>
+                            <input variable="perKapita"/>
+                            <output expression="&quot;Apakah ada rekomendasi dari wali dosen? (true/false): &quot;" newline="True"/>
+                            <input variable="rekomendasiWali"/>
+                            <if expression="ipk &gt;= 3.00 AND tanggungan &gt;= 3 AND perKapita &lt;= 1250000 AND rekomendasiWali == true">
+                                <then>
+                                    <assign variable="statusBeasiswa" expression="&quot;Skema B (Bantuan UKT 50%)&quot;"/>
+                                    <output expression="&quot;selamat, kamu mendapat beasiswa dengan status skema B&quot; &amp; statusBeasiswa" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Apakah mahasiswa merupakan Juara Talenta? (true/false): &quot;" newline="True"/>
+                                    <input variable="isJuaraTalenta"/>
+                                    <if expression="ipk &gt;= 2.75 AND isJuaraTalenta == true">
+                                        <then>
+                                            <assign variable="statusBeasiswa" expression="&quot;Skema C (Afirmasi Talenta)&quot;"/>
+                                            <output expression="&quot;selamat, kamu mendapat beasiswa dengan status skema C&quot; &amp; statusBeasiswa" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="statusBeasiswa" expression="&quot;ditolak&quot;"/>
+                                            <output expression="&quot;Maaf, kamu tidak dapat beasiswa&quot;" newline="True"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
